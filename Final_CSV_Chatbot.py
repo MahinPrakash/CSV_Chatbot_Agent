@@ -482,8 +482,13 @@ if st.button("Ask"):
         
             user_prompt=state.get('user_prompt')
 
+            with open('cache_file.json','r') as f:
+                cache_data=json.load(f)
+
+            cache_data[user_prompt]=replanner_llm_response
+
             with open('cache_file.json','w') as f:
-                json.dump({user_prompt:replanner_llm_response},f)
+                json.dump(cache_data,f)
 
             return {'final_response':{'final_response':replanner_llm_response}}
 
