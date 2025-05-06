@@ -483,7 +483,7 @@ if st.button("Ask"):
 
             response_container = st.empty()
 
-            for chunk in response_llm.stream([SystemMessage(content=replanner_llm_system_prompt)]):
+            async for chunk in response_llm.astream([SystemMessage(content=replanner_llm_system_prompt)]):
                 replanner_llm_response=replanner_llm_response+chunk.content
                 response_container.info(replanner_llm_response)
         
