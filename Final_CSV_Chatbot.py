@@ -477,7 +477,15 @@ if st.button("Ask"):
 
             print()
             
-            replanner_llm_response=(response_llm.invoke([SystemMessage(content=replanner_llm_system_prompt)])).content
+            replanner_llm_response=""
+
+            st.header('Response:-')
+
+            response_container = st.empty()
+
+            for chunk in response_llm.stream([SystemMessage(content=replanner_llm_system_prompt)]):
+                replanner_llm_response=replanner_llm_response+chunk.content
+                response_container.info(replanner_llm_response)
         
             user_prompt=state.get('user_prompt')
 
@@ -666,8 +674,7 @@ if st.button("Ask"):
             graph_result=graph.invoke({'user_prompt':user_prompt,'dataset':dataframe})
 
             if isinstance(graph_result['final_response']['final_response'],str):
-                st.header("Response:-")
-                st.info(graph_result['final_response']['final_response'])
+                pass
 
             else:
                 st.header("Response:-")
