@@ -486,7 +486,6 @@ if st.button("Ask"):
             for chunk in response_llm.stream([SystemMessage(content=replanner_llm_system_prompt)]):
                 replanner_llm_response=replanner_llm_response+chunk.content
                 response_container.info(replanner_llm_response)
-                print('T')
         
             user_prompt=state.get('user_prompt')
 
