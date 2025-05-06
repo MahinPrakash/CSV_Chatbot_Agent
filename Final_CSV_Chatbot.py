@@ -660,7 +660,7 @@ if st.button("Ask"):
         builder.add_edge('Data Viz Code Generator','Data Viz Code Executor')
         builder.add_edge('Data Viz Code Executor',END)
 
-        with st.spinner(text="Analyzing your data"):
+        with st.spinner(text="Agent Execution in Progress"):
             graph=builder.compile()
 
             graph_result=graph.invoke({'user_prompt':user_prompt,'dataset':dataframe})
